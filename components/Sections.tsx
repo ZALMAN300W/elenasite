@@ -17,7 +17,8 @@ import {
   Star,
   Copy,
   X,
-  QrCode
+  QrCode,
+  Phone
 } from "lucide-react";
 
 /* =========================================================
@@ -287,15 +288,16 @@ export function Hero() {
               {profile.experienceYears}
             </span>
 
+            {/* Заголовок изменен на «Декларация со 100% гарантией» */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0f2042] leading-[1.1] mb-6">
-              Налоговый учет со 100% гарантией
+              Декларация со 100% гарантией
             </h1>
 
             <p className="text-base sm:text-lg text-[#274675] font-normal leading-relaxed max-w-xl mb-8">
               {profile.tagline}
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 mb-10">
+            <div className="flex flex-wrap items-center gap-3 mb-8">
               <a
                 href="#services"
                 className="inline-flex items-center justify-center text-xs uppercase tracking-wider font-bold bg-[#1E3A8A] text-white px-6 py-3.5 rounded-full hover:bg-[#172554] shadow-md shadow-blue-950/20 transition-all"
@@ -310,23 +312,67 @@ export function Hero() {
               </a>
             </div>
 
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-2 text-xs text-[#3b5987] font-mono">
-              <span className="text-[#0f2042] font-bold">{contacts.phone}</span>
-              <span>•</span>
-              <Link href={socialLinks.telegramDirect} target="_blank" className="text-[#1E3A8A] font-medium underline hover:text-[#172554]">
-                Telegram
+            {/* Красивые заметные цветные плашки с переливающимся синим градиентом и бликом */}
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              {/* Плашка номера телефона */}
+              <a
+                href={`tel:${contacts.phone.replace(/[^\d+]/g, '')}`}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold text-[#0f2042] bg-white border border-blue-200 shadow-sm hover:border-blue-400 hover:bg-blue-50/70 transition-all"
+              >
+                <Phone className="w-3 h-3 text-[#1E3A8A]" />
+                <span>{contacts.phone}</span>
+              </a>
+
+              {/* Плашка Telegram */}
+              <Link
+                href={socialLinks.telegramDirect}
+                target="_blank"
+                className="group relative inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 shadow-sm shadow-blue-900/20 hover:shadow-md hover:shadow-blue-600/30 hover:scale-105 active:scale-95 transition-all duration-300 overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center gap-1">
+                  Telegram
+                  <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </span>
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 pointer-events-none" />
               </Link>
-              <span>•</span>
-              <Link href={socialLinks.whatsapp} target="_blank" className="text-[#1E3A8A] font-medium underline hover:text-[#172554]">
-                WhatsApp
+
+              {/* Плашка WhatsApp */}
+              <Link
+                href={socialLinks.whatsapp}
+                target="_blank"
+                className="group relative inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-700 shadow-sm shadow-blue-900/20 hover:shadow-md hover:shadow-cyan-600/30 hover:scale-105 active:scale-95 transition-all duration-300 overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center gap-1">
+                  WhatsApp
+                  <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </span>
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 pointer-events-none" />
               </Link>
-              <span>•</span>
-              <Link href={socialLinks.max} target="_blank" className="text-[#1E3A8A] font-medium underline hover:text-[#172554]">
-                МАКС
+
+              {/* Плашка МАКС */}
+              <Link
+                href={socialLinks.max}
+                target="_blank"
+                className="group relative inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 via-blue-600 to-blue-700 shadow-sm shadow-blue-900/20 hover:shadow-md hover:shadow-indigo-600/30 hover:scale-105 active:scale-95 transition-all duration-300 overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center gap-1">
+                  МАКС
+                  <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </span>
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 pointer-events-none" />
               </Link>
-              <span>•</span>
-              <Link href={socialLinks.vk} target="_blank" className="text-[#1E3A8A] font-medium underline hover:text-[#172554]">
-                ВКонтакте
+
+              {/* Плашка ВКонтакте */}
+              <Link
+                href={socialLinks.vk}
+                target="_blank"
+                className="group relative inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 shadow-sm shadow-blue-900/20 hover:shadow-md hover:shadow-blue-600/30 hover:scale-105 active:scale-95 transition-all duration-300 overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center gap-1">
+                  ВКонтакте
+                  <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </span>
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 pointer-events-none" />
               </Link>
             </div>
           </div>
@@ -377,104 +423,101 @@ export function Services({
   services?: typeof siteConfig.services 
 }) {
   const items = services.length > 0 ? services : siteConfig.services;
-  const [modalService, setModalService] = useState<string | null>(null);
 
-  const handleInquiryClick = (title: string) => {
+  const handleSelectServiceAction = (title: string, type: "pay" | "inquiry") => {
     if (typeof window !== "undefined") {
       window.dispatchEvent(
         new CustomEvent("select-lead-service", {
-          detail: { service: title, type: "inquiry" },
+          detail: { service: title, type },
         })
       );
+
       const target = document.getElementById("lead-form");
       if (target) {
         target.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          const input = target.querySelector<HTMLInputElement>('input[name="fullName"]');
+          if (input) {
+            input.focus();
+          }
+        }, 500);
       }
     }
   };
 
   return (
-    <>
-      <section id="services" className="py-16 sm:py-24 border-b border-blue-100 bg-white scroll-mt-12">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-[#1E3A8A] block mb-2 font-semibold">
-                Прайс-лист
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0f2042] tracking-tight">
-                Услуги и стоимость
-              </h2>
-            </div>
-            <p className="text-xs text-[#3b5987] mt-2 sm:mt-0 font-mono">
-              Работаю онлайн по всей России • Оплата картой, QR или по счету
-            </p>
+    <section id="services" className="py-16 sm:py-24 border-b border-blue-100 bg-white scroll-mt-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+          <div>
+            <span className="text-xs font-mono uppercase tracking-widest text-[#1E3A8A] block mb-2 font-semibold">
+              Прайс-лист
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0f2042] tracking-tight">
+              Услуги и стоимость
+            </h2>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className="p-6 sm:p-7 rounded-3xl border border-blue-100 bg-white flex flex-col justify-between hover:border-[#1E3A8A] hover:shadow-lg hover:shadow-blue-950/5 transition-all"
-              >
-                <div>
-                  <div className="flex items-center justify-between text-xs font-mono text-[#3b5987] mb-4 pb-3 border-b border-blue-50">
-                    <span>{item.term}</span>
-                    <span className="font-extrabold text-[#1E3A8A] text-sm">
-                      {item.price}
-                    </span>
-                  </div>
-
-                  <h3 className="text-base font-bold text-[#0f2042] mb-2.5 tracking-tight min-h-[48px]">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-xs text-[#274675] leading-relaxed mb-6">
-                    {item.desc}
-                  </p>
-
-                  <ul className="space-y-2 mb-8">
-                    {item.features.map((f, i) => (
-                      <li key={i} className="flex items-start gap-2 text-xs text-[#274675] leading-normal">
-                        <Check className="w-3.5 h-3.5 text-[#1E3A8A] shrink-0 mt-0.5" />
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="space-y-2 pt-2">
-                  <button
-                    type="button"
-                    onClick={() => setModalService(item.title)}
-                    className="w-full inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider py-3 rounded-full bg-[#1E3A8A] text-white hover:bg-[#172554] shadow-sm shadow-blue-950/20 transition-all cursor-pointer"
-                  >
-                    <CreditCard className="w-3.5 h-3.5" />
-                    <span>Оплатить (QR / Реквизиты)</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => handleInquiryClick(item.title)}
-                    className="w-full inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider py-2.5 rounded-full border border-blue-200 text-[#1E3A8A] hover:bg-blue-50 transition-all cursor-pointer"
-                  >
-                    <span>Записаться / Вопрос</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-[#1E3A8A]" />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+          <p className="text-xs text-[#3b5987] mt-2 sm:mt-0 font-mono">
+            Работаю онлайн по всей России • Оплата картой, QR или по счету
+          </p>
         </div>
-      </section>
 
-      {/* Модалка оплаты */}
-      <PaymentModal
-        isOpen={Boolean(modalService)}
-        onClose={() => setModalService(null)}
-        serviceTitle={modalService || ""}
-      />
-    </>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="p-6 sm:p-7 rounded-3xl border border-blue-100 bg-white flex flex-col justify-between hover:border-[#1E3A8A] hover:shadow-lg hover:shadow-blue-950/5 transition-all"
+            >
+              <div>
+                <div className="flex items-center justify-between text-xs font-mono text-[#3b5987] mb-4 pb-3 border-b border-blue-50">
+                  <span>{item.term}</span>
+                  <span className="font-extrabold text-[#1E3A8A] text-sm">
+                    {item.price}
+                  </span>
+                </div>
+
+                <h3 className="text-base font-bold text-[#0f2042] mb-2.5 tracking-tight min-h-[48px]">
+                  {item.title}
+                </h3>
+
+                <p className="text-xs text-[#274675] leading-relaxed mb-6">
+                  {item.desc}
+                </p>
+
+                <ul className="space-y-2 mb-8">
+                  {item.features.map((f, i) => (
+                    <li key={i} className="flex items-start gap-2 text-xs text-[#274675] leading-normal">
+                      <Check className="w-3.5 h-3.5 text-[#1E3A8A] shrink-0 mt-0.5" />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="space-y-2 pt-2">
+                <button
+                  type="button"
+                  onClick={() => handleSelectServiceAction(item.title, "pay")}
+                  className="w-full inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider py-3 rounded-full bg-[#1E3A8A] text-white hover:bg-[#172554] shadow-sm shadow-blue-950/20 transition-all cursor-pointer"
+                >
+                  <CreditCard className="w-3.5 h-3.5" />
+                  <span>Оплатить (QR / Реквизиты)</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleSelectServiceAction(item.title, "inquiry")}
+                  className="w-full inline-flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider py-2.5 rounded-full border border-blue-200 text-[#1E3A8A] hover:bg-blue-50 transition-all cursor-pointer"
+                >
+                  <span>Записаться / Вопрос</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#1E3A8A]" />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -522,6 +565,11 @@ export function Principles() {
 export function About() {
   const { aboutMe } = siteConfig;
 
+  // Автоматически применяем фразу «занимаюсь еще и преподаванием...»
+  const updatedAboutText = aboutMe.text
+    ? aboutMe.text.replace("занимаюсь преподаванием", "занимаюсь еще и преподаванием")
+    : "Практикую учет с 1998 года. 23 года руководила подразделениями в коммерческом банке, а с 2024 года полностью сосредоточена на рынке бухгалтерских услуг для физических лиц и предпринимателей. С 2026 года занимаюсь еще и преподаванием в федеральной Школе финансовых экспертов Ольги Красновой.";
+
   return (
     <section id="about" className="py-16 sm:py-24 border-b border-blue-100 bg-white scroll-mt-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
@@ -540,7 +588,7 @@ export function About() {
 
           <div className="lg:col-span-8 flex flex-col justify-between">
             <p className="text-base sm:text-lg text-[#1e3a8a] leading-relaxed mb-6 font-normal">
-              {aboutMe.text}
+              {updatedAboutText}
             </p>
 
             <div className="space-y-3 mb-6">
@@ -729,7 +777,6 @@ export function LeadForm({
   const [errorMsg, setErrorMsg] = useState("");
   const [isQrModalOpen, setIsQrModalOpen] = useState(false);
 
-  // Слушаем события нажатия кнопок из блока услуг
   useEffect(() => {
     const handleSelectService = (e: Event) => {
       const customEvent = e as CustomEvent<{ service?: string; type?: "pay" | "inquiry" }>;
@@ -790,7 +837,7 @@ export function LeadForm({
               Оформить услугу или задать вопрос
             </h2>
             <p className="text-xs sm:text-sm text-[#274675] mt-2">
-              Вы можете оплатить услугу по QR-коду (СБП) или реквизитам счета, либо оставить заявку для связи.
+              Заполните контактные данные для регистрации заявки и перейдите к оплате через СБП или реквизиты.
             </p>
           </div>
 
@@ -961,7 +1008,6 @@ export function LeadForm({
         </div>
       </section>
 
-      {/* Модальное окно с QR-кодом */}
       <PaymentModal
         isOpen={isQrModalOpen}
         onClose={() => setIsQrModalOpen(false)}
