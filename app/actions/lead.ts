@@ -25,37 +25,54 @@ export async function submitLead(formData: FormData): Promise<LeadResponse> {
 
   const prodamusEnvUrl = process.env.PRODAMUS_URL?.trim();
   const hasActivePaymentGateway = Boolean(prodamusEnvUrl && prodamusEnvUrl.startsWith("http"));
-
   const isOnlinePayment = paymentType === "pay" && hasActivePaymentGateway;
+
+  // Понятные и аккуратные статусы для Telegram
   const statusLabel = isOnlinePayment
-    ? "💳 ПЕРЕХОД К ОНЛАЙН-ОПЛАТЕ ЧЕРЕЗ ПРОДАМУС"
+    ? "💳 ОНЛАЙН-ОПЛАТА (ПРОДАМУС)"
     : paymentType === "pay"
-    ? "📩 ЗАЯВКА НА ОПЛАТУ (ПЛАТЕЖНЫЙ ШЛЮЗ НЕ ПОДКЛЮЧЕН)"
+    ? "💳 ЗАЯВКА НА ОПЛАТУ (СБП / QR-КОД / РЕКВИЗИТЫ)"
     : "📩 ЗАЯВКА НА КОНСУЛЬТАЦИЮ / ЗАПИСЬ";
 
   const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  const rawChatId = process.env.TELEGRAM_CHAT_ID || "";
   const apiBase = (process.env.TELEGRAM_API_BASE || "https://api.telegram.org").replace(/\/+$/, "");
 
-  const text = `<b>${statusLabel}</b>\n\n<b>Услуга:</b> ${serviceTitle}\n<b>Сумма:</b> ${price} ₽\n<b>ФИО:</b> ${fullName}\n<b>Телефон:</b> ${phone}\n<b>Согласие на ОПД:</b> ${agree}\n<b>Время:</b> ${new Date().toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })} (МСК)`;
+  // Поддержка нескольких Chat ID через запятую
+  const chatIds = rawChatId
+    .split(",")
+    .map((id) => id.trim())
+    .filter(Boolean);
 
-  if (token && chatId) {
+  const text = `<b>${statusLabel}</b>\n\n` +
+    `<b>Услуга:</b> ${serviceTitle}\n` +
+    `<b>Сумма к оплате:</b> ${price} ₽\n` +
+    `<b>ФИО клиента:</b> ${fullName}\n` +
+    `<b>Телефон:</b> ${phone}\n` +
+    `<b>Согласие на ОПД:</b> ${agree}\n` +
+    `<b>Время:</b> ${new Date().toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })} (МСК)`;
+
+  if (token && chatIds.length > 0) {
     try {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 8000);
 
-      await fetch(`${apiBase}/bot${token}/sendMessage`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: text,
-          parse_mode: "HTML",
-        }),
-        signal: controller.signal,
-      });
+      await Promise.allSettled(
+        chatIds.map(async (chatId) => {
+          return fetch(`${apiBase}/bot${token}/sendMessage`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: text,
+              parse_mode: "HTML",
+            }),
+            signal: controller.signal,
+          });
+        })
+      );
 
       clearTimeout(timeout);
     } catch {
@@ -80,8 +97,8 @@ export async function submitLead(formData: FormData): Promise<LeadResponse> {
 
   return { 
     success: true,
-    message: paymentType === "pay" && !hasActivePaymentGateway 
-      ? "Заявка принята! Елена свяжется с вами и выставит официальный счет на оплату."
-      : undefined
+    message: paymentType === "pay"
+      ? "Заявка зафиксирована! Для оплаты отсканируйте QR-код или используйте реквизиты."
+      : "Заявка успешно отправлена! Елена свяжется с вами в течение рабочего дня."
   };
 }
