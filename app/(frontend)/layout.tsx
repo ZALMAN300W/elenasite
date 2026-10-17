@@ -18,9 +18,12 @@ export const metadata: Metadata = {
   description: 'Профессиональный налоговый учет, декларации 3-НДФЛ, налоговые вычеты и консультации для физических лиц и бизнеса.',
   keywords: ['налоговый учет', 'Елена Бахарева', 'налоговый консультант', '3-НДФЛ', 'налоговый вычет'],
   icons: {
-    icon: '/favicon.png',
-    shortcut: '/favicon.png',
-    apple: '/favicon.png',
+    icon: [
+      { url: '/favicon.png?v=3', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
+    shortcut: '/favicon.png?v=3',
+    apple: '/favicon.png?v=3',
   },
   openGraph: {
     title: 'Елена Бахарева | Налоговый учет со 100% гарантией',
@@ -29,6 +32,10 @@ export const metadata: Metadata = {
     siteName: 'Елена Бахарева — Налоговый учет',
     locale: 'ru_RU',
     type: 'website',
+  },
+  verification: {
+    yandex: 'e283693c8eccecb9',
+    google: 'o7A7nm_7nqnjueVQOaeXLr_VHIcZ8yD9b6JRzpigYjQ',
   },
 }
 
