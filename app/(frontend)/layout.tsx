@@ -37,6 +37,9 @@ export const metadata: Metadata = {
     yandex: 'e283693c8eccecb9',
     google: 'o7A7nm_7nqnjueVQOaeXLr_VHIcZ8yD9b6JRzpigYjQ',
   },
+  other: {
+    google: 'notranslate',
+  },
 }
 
 export default function RootLayout({
@@ -44,12 +47,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-    <html lang="ru" className="scroll-smooth">
+    return (
+    <html lang="ru" className="scroll-smooth notranslate" translate="no">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
         <ScrollToTop />
       </body>
     </html>
-  )
+  );
 }

@@ -21,9 +21,7 @@ import {
   Phone
 } from "lucide-react";
 
-/* =========================================================
-   МОДАЛЬНОЕ ОКНО ОПЛАТЫ (QR-КОД И РЕКВИЗИТЫ)
-   ========================================================= */
+
 export function PaymentModal({
   isOpen,
   onClose,
@@ -101,7 +99,6 @@ export function PaymentModal({
           </p>
         </div>
 
-        {/* Табы */}
         <div className="flex rounded-2xl bg-blue-50/70 p-1 mb-5 border border-blue-100">
           <button
             type="button"
@@ -129,7 +126,6 @@ export function PaymentModal({
           </button>
         </div>
 
-        {/* Вкладка 1: QR */}
         {activeTab === "qr" && (
           <div className="flex flex-col items-center text-center">
             <div className="rounded-2xl border-2 border-blue-100 bg-white p-3 shadow-sm mb-4">
@@ -151,7 +147,7 @@ export function PaymentModal({
           </div>
         )}
 
-        {/* Вкладка 2: Реквизиты */}
+
         {activeTab === "requisites" && (
           <div className="space-y-3">
             <div className="rounded-2xl border border-blue-100 bg-blue-50/40 p-3 space-y-2 text-xs">
@@ -179,7 +175,6 @@ export function PaymentModal({
               ))}
             </div>
 
-            {/* Назначение платежа */}
             <div className="rounded-2xl border border-amber-200 bg-amber-50/80 p-3 text-xs">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-amber-900">
@@ -218,9 +213,6 @@ export function PaymentModal({
   );
 }
 
-/* =========================================================
-   HEADER
-   ========================================================= */
 export function Header() {
   const { profile, socialLinks } = siteConfig;
 
@@ -288,7 +280,6 @@ export function Hero() {
               {profile.experienceYears}
             </span>
 
-            {/* Заголовок изменен на «Декларация со 100% гарантией» */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0f2042] leading-[1.1] mb-6">
               Декларация со 100% гарантией
             </h1>
@@ -312,9 +303,7 @@ export function Hero() {
               </a>
             </div>
 
-            {/* Красивые заметные цветные плашки с переливающимся синим градиентом и бликом */}
             <div className="flex flex-wrap items-center gap-2 pt-1">
-              {/* Плашка номера телефона */}
               <a
                 href={`tel:${contacts.phone.replace(/[^\d+]/g, '')}`}
                 className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold text-[#0f2042] bg-white border border-blue-200 shadow-sm hover:border-blue-400 hover:bg-blue-50/70 transition-all"
@@ -323,7 +312,6 @@ export function Hero() {
                 <span>{contacts.phone}</span>
               </a>
 
-              {/* Плашка Telegram */}
               <Link
                 href={socialLinks.telegramDirect}
                 target="_blank"
@@ -336,7 +324,6 @@ export function Hero() {
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 pointer-events-none" />
               </Link>
 
-              {/* Плашка WhatsApp */}
               <Link
                 href={socialLinks.whatsapp}
                 target="_blank"
@@ -349,7 +336,6 @@ export function Hero() {
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 pointer-events-none" />
               </Link>
 
-              {/* Плашка МАКС */}
               <Link
                 href={socialLinks.max}
                 target="_blank"
@@ -362,7 +348,6 @@ export function Hero() {
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 pointer-events-none" />
               </Link>
 
-              {/* Плашка ВКонтакте */}
               <Link
                 href={socialLinks.vk}
                 target="_blank"
@@ -414,9 +399,6 @@ export function Hero() {
   );
 }
 
-/* =========================================================
-   SERVICES
-   ========================================================= */
 export function Services({ 
   services = siteConfig.services 
 }: { 
@@ -521,9 +503,7 @@ export function Services({
   );
 }
 
-/* =========================================================
-   PRINCIPLES
-   ========================================================= */
+
 export function Principles() {
   const { advantages } = siteConfig;
 
@@ -559,9 +539,7 @@ export function Principles() {
   );
 }
 
-/* =========================================================
-   ABOUT
-   ========================================================= */
+
 export function About() {
   const { aboutMe } = siteConfig;
 
@@ -623,9 +601,7 @@ export function About() {
   );
 }
 
-/* =========================================================
-   STEPS
-   ========================================================= */
+
 export function Steps() {
   const { steps } = siteConfig;
 
@@ -664,9 +640,6 @@ export function Steps() {
   );
 }
 
-/* =========================================================
-   REVIEWS
-   ========================================================= */
 export function Reviews({ 
   reviews = siteConfig.reviews 
 }: { 
@@ -759,9 +732,7 @@ export function Reviews({
   );
 }
 
-/* =========================================================
-   LEAD FORM (ЗАПИСЬ И ОПЛАТА С QR-КОДОМ)
-   ========================================================= */
+
 export function LeadForm({ 
   services = siteConfig.services 
 }: { 
@@ -1017,9 +988,7 @@ export function LeadForm({
   );
 }
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
+
 export function Footer() {
   const { profile, socialLinks, contacts } = siteConfig;
 

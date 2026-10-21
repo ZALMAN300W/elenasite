@@ -150,7 +150,6 @@ export async function GET() {
   try {
     const payload = await getPayload({ config });
 
-    // Очищаем старые записи
     await payload.delete({
       collection: 'services',
       where: {},
@@ -160,7 +159,6 @@ export async function GET() {
       where: {},
     });
 
-    // Добавляем услуги
     for (const service of SERVICES_DATA) {
       await payload.create({
         collection: 'services',
@@ -168,7 +166,7 @@ export async function GET() {
       });
     }
 
-    // Добавляем все 11 отзывов
+
     for (const review of REVIEWS_DATA) {
       await payload.create({
         collection: 'reviews',

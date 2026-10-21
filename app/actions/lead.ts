@@ -35,9 +35,7 @@ export async function submitLead(formData: FormData): Promise<LeadResponse> {
 
   const currentTime = new Date().toLocaleString("ru-RU", { timeZone: "Europe/Moscow" });
 
-  /* =========================================================================
-     1. ОТПРАВКА В TELEGRAM
-     ========================================================================= */
+  
   const tgToken = process.env.TELEGRAM_BOT_TOKEN;
   const rawTgChatId = process.env.TELEGRAM_CHAT_ID || "";
   const tgApiBase = (process.env.TELEGRAM_API_BASE || "https://api.telegram.org").replace(/\/+$/, "");
@@ -81,9 +79,6 @@ export async function submitLead(formData: FormData): Promise<LeadResponse> {
     }
   }
 
-  /* =========================================================================
-     2. ОТПРАВКА В ВК (В ЛИЧНЫЕ СООБЩЕНИЯ ЕЛЕНЕ)
-     ========================================================================= */
   const vkToken = process.env.VK_BOT_TOKEN;
   const rawVkPeerId = process.env.VK_PEER_ID || "";
 
@@ -139,9 +134,7 @@ export async function submitLead(formData: FormData): Promise<LeadResponse> {
     }
   }
 
-  /* =========================================================================
-     3. ОБРАБОТКА ОНЛАЙН-ШЛЮЗА (ЕСЛИ ПОДКЛЮЧЕН)
-     ========================================================================= */
+
   if (isOnlinePayment && prodamusEnvUrl) {
     const cleanPhone = phone.replace(/[^\d+]/g, "");
     const prodamusUrl = new URL(prodamusEnvUrl);
