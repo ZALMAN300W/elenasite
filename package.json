@@ -10,10 +10,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@payloadcms/db-postgres": "^3.25.0",
     "@payloadcms/next": "^3.25.0",
     "@payloadcms/richtext-lexical": "^3.25.0",
+=======
+    "@payloadcms/db-postgres": "^3.0.0",
+    "@payloadcms/next": "^3.0.0",
+    "@payloadcms/richtext-lexical": "^3.0.0",
+    "@tailwindcss/postcss": "^4.3.3",
+>>>>>>> b5628d2db4f8180a7dcd884f5664fd977d75b18d
     "cross-env": "^7.0.3",
+    "graphql": "^16.14.2",
     "lucide-react": "^0.475.0",
     "next": "^15.2.3",
     "payload": "^3.25.0",
